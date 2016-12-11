@@ -1,1 +1,1 @@
-var app = angular.module('LiveScore', []);
+var app = angular.module('LiveNews', []);

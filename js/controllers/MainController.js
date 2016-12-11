@@ -4,7 +4,7 @@ app.controller('MainController', ['$scope', 'getData','$interval', function($sco
 
   //Handle function change source
   $scope.changeSource = function(selectSource){
-      getData.getDataFromSource(selectSource).success(function(data) {
+      getData.getDataFromSource(selectSource).then(function(data) {
         $scope.data = data;
       });
   }
