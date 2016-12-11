@@ -10,13 +10,4 @@ app.controller('MainController', ['$scope', 'getData','$interval', function($sco
   }
   $scope.changeSource('bbc-news')
   
-  // $scope.intervalFunction = function(){
-  //   $interval(function() {
-      
-      
-  //   }, 10000)
-  // };
-  
-  // // Kick off the interval
-  // $scope.intervalFunction();
 }]);

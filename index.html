@@ -15,12 +15,10 @@
         <div class="container_sport">
             <div class="headline">
               <!--Headline-->
-                <div class="news_block">
                   <img class="headline-img img-responsive" ng-src="{{ data.articles[0].urlToImage }}">
-                  <a class="headline-title" href="{{ data.articles[0].url }}">{{ data.articles[0].title }}</a>
+                  <a class="headline-title" href="{{ data.articles[0].url }}">{{ data.articles[0].title }}</a><br><br>
                   <div class="headline-description">{{ data.articles[0].description }}</div>
                   <p class="feed_time">{{ data.articles[0].publishedAt | date: 'shortDate' }} {{ data.articles[0].publishedAt | date: 'shortTime' }}</p>
-                </div>
             </div>
             <div class="feeds_sport" ng-repeat="article in data.articles">
               <!--Feeds-->
@@ -34,9 +32,11 @@
 
         <div class = "right_bar">
           <!--Change Source-->
+            <h3> Select a source:</h3>
             <select name="selectSource" id="selectSource" ng-change="changeSource(selectSource)" ng-model="selectSource">
                 <option ng-repeat="source in sources">{{source }}</option>
             </select>
+            <br>
         </div>
 
       </div>
