@@ -8,6 +8,6 @@ app.controller('MainController', ['$scope', 'getData','$interval', function($sco
         $scope.data = data;
       });
   }
-  $scope.changeSource('bbc-news')
+  $scope.changeSource('bbc-news');
   
 }]);

@@ -15,7 +15,7 @@
         <div class="container_sport">
             <div class="headline">
               <!--Headline-->
-                  <img class="headline-img img-responsive" ng-src="{{ data.articles[0].urlToImage }}">
+                  <img class="headline-img img-responsive" ng-src="{{ data.articles[0].urlToImage }}" >
                   <a class="headline-title" href="{{ data.articles[0].url }}">{{ data.articles[0].title }}</a><br><br>
                   <div class="headline-description">{{ data.articles[0].description }}</div>
                   <p class="feed_time">{{ data.articles[0].publishedAt | date: 'shortDate' }} {{ data.articles[0].publishedAt | date: 'shortTime' }}</p>
@@ -23,7 +23,15 @@
             <div class="feeds_sport" ng-repeat="article in data.articles">
               <!--Feeds-->
               <div class="news_block">
-                <img class="feed_img img-responsive" ng-src="{{ article.urlToImage }}">
+                <img class="feed_img img-responsive" ng-src="{{ article.urlToImage }}" ng-click="showLightBox = true">
+                <!--lightbox-->
+                <lightbox-directive class="angular-lightbox" ng-class="{ hidden : !showLightBox }">
+                    <a class="close-btn" ng-click="$parent.showLightBox = false">&times;</a>
+                    <content>
+                      <img class="full-img" ng-src="{{ article.urlToImage }}" ng-click="showLightBox = true">
+                      <h3>{{ article.title }}</h3>
+                    </content>
+                </lightbox-directive>
                 <a class="feed_title" href="{{ article.url }}">{{ article.title }}</a>
                 <p class="feed_time">{{ article.publishedAt | date: 'shortDate' }} {{ article.publishedAt | date: 'shortTime' }}</p>
               </div>
@@ -34,7 +42,7 @@
           <!--Change Source-->
             <h3> Select a source:</h3>
             <select name="selectSource" id="selectSource" ng-change="changeSource(selectSource)" ng-model="selectSource">
-                <option ng-repeat="source in sources">{{source }}</option>
+                <option ng-repeat="source in sources">{{ source }}</option>
             </select>
             <br>
         </div>
@@ -51,7 +59,7 @@
     <script src="js/services/getData.js"></script>
 
     <!-- Directives -->
-
+    <script src="js/directives/fullImg.js"></script>
 
   </body>
 </html>

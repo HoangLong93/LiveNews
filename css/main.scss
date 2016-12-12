@@ -45,9 +45,11 @@
 
 	.headline-title{
 		@include headline-text;
-	}
-	.headline-title:visited {
-		@include headline-text;
+
+
+		&:visited {
+			@include headline-text;
+		}
 	}
 
 	.headline-description{
@@ -84,24 +86,72 @@
 			font-size:16px;
 			padding-top: 10px;
 			text-align: justify;
-		}
 
-		.feed_title:link {
-			@include feed-text;
-			font-weight: bold;
-		}
-		.feed_title:visited {
-			@include feed-text;
-			font-weight: bold;
-		}
-		.feed_title:hover {
-			font-size: 18px;
-			text-decoration: none;
-			color: blue;
-			text-align: justify;
+			&:link {
+				@include feed-text;
+				font-weight: bold;
+			}
+			&:visited {
+				@include feed-text;
+				font-weight: bold;
+			}
+			&:hover {
+				font-size: 18px;
+				text-decoration: none;
+				color: blue;
+				text-align: justify;
+			}
 		}
 	}
 }
 
 
+////////Light Box//////////
+$maxWidthContent: 800px;
+$maxHeightContent: 400px;
+
+.angular-lightbox {
+  &.hidden {
+    display: none;    
+  }
+  
+  section {
+    position: fixed;
+    z-index: 100065;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.80);
+		color: white;      
+
+        a.close-btn {
+						color: white;
+						position: absolute;
+						top: 10px;
+						right: 25px;
+						font-size: 35px;
+						font-weight: bold;
+          
+						&:hover, &:focus {
+							color: white;
+						}
+					} 
+      
+      > content {
+        margin: 0 auto;
+        height: 50%;
+        position: absolute;
+        top: 30%;
+        text-align: center;
+        width: 100%;
+
+					> img {
+						width: $maxWidthContent;
+						margin: 0 auto;
+						max-height: $maxHeightContent;
+					}
+      }    
+  }
+}
 
