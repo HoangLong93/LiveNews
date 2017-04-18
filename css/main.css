@@ -5817,13 +5817,25 @@ button.close {
 .main {
   padding-top: 50px; }
 
+#slideshow {
+  position: relative;
+  padding: 10px; }
+
+.banner {
+  height: 400px;
+  position: relative;
+  top: 10px;
+  right: 10px;
+  bottom: 10px; }
+
+.up {
+  transition: 2s;
+  transform: translateY(-400px); }
+
 .headline {
-  width: 90%;
-  height: 300px;
+  height: 400px;
   margin-bottom: 50px;
   overflow: hidden; }
-  .headline .headline-img {
-    height: 400px; }
   .headline .headline-title {
     font-size: 24px;
     text-decoration: none;

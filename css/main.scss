@@ -21,6 +21,25 @@
 	@extend .col-xs-12;
 }
 
+
+#slideshow{ 
+    position: relative; 
+    padding: 10px; 
+}
+
+.banner { 
+	height: 400px;
+    position: relative; 
+    top: 10px; 
+    right: 10px; 
+    bottom: 10px;
+}
+
+.up{
+	transition: 2s;
+	transform: translateY(-400px);
+}
+
 ///////HEADLINES/////////
 @mixin headline-text{
 	font-size: 24px;
@@ -31,8 +50,7 @@
 }
 .headline{
 	@extend .row;
-	width: 90%;
-	height: 300px;
+	height: 400px;
 	margin-bottom: 50px;
 	overflow:hidden;
 
@@ -40,7 +58,6 @@
 		@extend .col-lg-8;
 		@extend .col-md-8;
 		@extend .col-xs-8;
-		height: 400px;
 	}
 
 	.headline-title{

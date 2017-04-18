@@ -1,65 +1,87 @@
 <!doctype html>
 <html>
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="css/main.css" rel="stylesheet">
- 
-    <!-- Include the AngularJS library -->
-    <script src="node_modules/angular/angular.min.js"></script>
-	  <script src="node_modules/jquery/dist/jquery.min.js"></script>
-  </head>
-  <body ng-app="LiveNews">
-    <div class="container-fluid">
-      <div class="main" ng-controller="MainController">
-        <div class="left_bar"></div>
-        <div class="container_sport">
-            <div class="headline">
-              <!--Headline-->
-                  <img class="headline-img img-responsive" ng-src="{{ data.articles[0].urlToImage }}" >
-                  <a class="headline-title" href="{{ data.articles[0].url }}">{{ data.articles[0].title }}</a><br><br>
-                  <div class="headline-description">{{ data.articles[0].description }}</div>
-                  <p class="feed_time">{{ data.articles[0].publishedAt | date: 'shortDate' }} {{ data.articles[0].publishedAt | date: 'shortTime' }}</p>
-            </div>
-            <div class="feeds_sport" ng-repeat="article in data.articles">
-              <!--Feeds-->
-              <div class="news_block">
-                <img class="feed_img img-responsive" ng-src="{{ article.urlToImage }}" ng-click="showLightBox = true">
-                <!--lightbox-->
-                <lightbox-directive class="angular-lightbox" ng-class="{ hidden : !showLightBox }">
-                    <a class="close-btn" ng-click="$parent.showLightBox = false">&times;</a>
-                    <content>
-                      <img class="full-img" ng-src="{{ article.urlToImage }}" ng-click="showLightBox = true">
-                      <h3>{{ article.title }}</h3>
-                    </content>
-                </lightbox-directive>
-                <a class="feed_title" href="{{ article.url }}">{{ article.title }}</a>
-                <p class="feed_time">{{ article.publishedAt | date: 'shortDate' }} {{ article.publishedAt | date: 'shortTime' }}</p>
-              </div>
-            </div>
-        </div>
 
-        <div class = "right_bar">
-          <!--Change Source-->
-            <h3> Select a source:</h3>
-            <select name="selectSource" id="selectSource" ng-change="changeSource(selectSource)" ng-model="selectSource">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="css/main.css" rel="stylesheet">
+
+  <!-- Include the AngularJS library -->
+  <script src="node_modules/angular/angular.min.js"></script>
+  <script src="node_modules/jquery/dist/jquery.min.js"></script>
+</head>
+
+<body ng-app="LiveNews">
+  <div class="container-fluid">
+    <div class="main" ng-controller="MainController">
+      <div class="left_bar"></div>
+      <div class="container_sport">
+        <div id="slideshow" class="headline">
+          <div class="block">
+            <div class="banner" ng-repeat="article in data.articles">
+              <!--Headline-->
+              <img class="headline-img img-responsive" ng-src="{{ article.urlToImage }}">
+              <a class="headline-title" href="{{ article.url }}">{{ article.title }}</a><br><br>
+              <div class="headline-description">{{ article.description }}</div>
+              <p class="feed_time">{{ article.publishedAt | date: 'shortDate' }} {{ article.publishedAt | date: 'shortTime' }}</p>
+            </div>
+          </div>
+        </div>
+        <div class="feeds_sport" ng-repeat="article in data.articles">
+          <!--Feeds-->
+          <div class="news_block">
+            <img class="feed_img img-responsive" ng-src="{{ article.urlToImage }}" ng-click="showLightBox = true">
+            <!--lightbox-->
+            <lightbox-directive class="angular-lightbox" ng-class="{ hidden : !showLightBox }">
+              <a class="close-btn" ng-click="$parent.showLightBox = false">&times;</a>
+              <content>
+                <img class="full-img" ng-src="{{ article.urlToImage }}" ng-click="showLightBox = true">
+                <h3>{{ article.title }}</h3>
+              </content>
+            </lightbox-directive>
+            <a class="feed_title" href="{{ article.url }}">{{ article.title }}</a>
+            <p class="feed_time">{{ article.publishedAt | date: 'shortDate' }} {{ article.publishedAt | date: 'shortTime' }}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="right_bar">
+        <!--Change Source-->
+        <h3> Select a source:</h3>
+        <select name="selectSource" id="selectSource" ng-change="changeSource(selectSource)" ng-model="selectSource">
                 <option ng-repeat="source in sources">{{ source }}</option>
             </select>
-            <br>
-        </div>
-
+        <br>
       </div>
+
     </div>
-    <!-- Modules -->
-    <script src="js/app.js"></script>
+  </div>
+  <!-- Modules -->
+  <script src="js/app.js"></script>
 
-    <!-- Controllers -->
-    <script src="js/controllers/MainController.js"></script>
+  <!-- Controllers -->
+  <script src="js/controllers/MainController.js"></script>
 
-    <!-- Services -->
-    <script src="js/services/getData.js"></script>
+  <!-- Services -->
+  <script src="js/services/getData.js"></script>
 
-    <!-- Directives -->
-    <script src="js/directives/fullImg.js"></script>
+  <!-- Directives -->
+  <script src="js/directives/fullImg.js"></script>
 
-  </body>
+  <script>
+    setInterval(function () {
+      var headline = document.getElementById("slideshow");
+      var block = headline.children[0];
+      var firstNews = block.children[0];
+      block.classList.add("up");
+      setTimeout(function () {
+        block.classList.remove("up");
+        block.removeChild(firstNews);
+        block.appendChild(firstNews);
+      }, 2000)
+    }, 4000)
+  </script>
+
+
+</body>
+
 </html>
